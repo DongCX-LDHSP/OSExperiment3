@@ -2,3 +2,4 @@ source/bill.o
 source/fred.o
 source/slmain
 source/slmain.o
+source/dlmain
