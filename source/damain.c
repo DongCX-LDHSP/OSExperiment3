@@ -11,7 +11,7 @@ void main()
     plib = dlopen("./libfoo.so", RTLD_NOW | RTLD_GLOBAL);
     if (plib == NULL)
     {
-        printf("动态库加载异常。\n");
+        printf("error\n");
     }
     funHello = dlsym(plib, "bill");
     funHello("Hello world");
