@@ -4,3 +4,4 @@ source/slmain
 source/slmain.o
 source/dlmain
 source/damain
+dynamicLoadMemoryUse/main
