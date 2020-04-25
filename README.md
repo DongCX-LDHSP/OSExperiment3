@@ -39,3 +39,18 @@
 使用`ldd 文件名`进行观察比较即可
 
 ## 确认动态库加载内存使用
+
+1. 编写`libtest.c`文件
+2. 编写`main.c`文件
+3. 使用命令`gcc libtest.c -shared -fPIC -o libtest.so` 生成动态链接库 `libtest.so`
+4. 使用命令`gcc main.c -o main -ldl`生成链接了动态库的可执行文件`main`
+5. `./main`运行程序
+6. 使用命令`ps -ef | grep main`查询`main`程序的`pid`
+7. 打开相应的文件夹 `/proc/pid`
+8. 结合程序的流程使用命令 `cat maps` 观察内存变化
+
+## 动态链接函数的含义
+
+1. `dlopen`：打开动态库。函数原型`void* dlopen(const char* filename, int flag);` `dlopen`用于打开指定名字`(filename)`的动态库，并返回操作句柄。
+2. `dlsym`，取函数执行地址。函数原型为`void* dlsym(void* handle, char *symbol);` `dlsym`根据动态库操作句柄`(handle)`与符号`(symbol)`，返回符号对应的函数的执行代码地址。
+3. `dlclose`，关闭动态库。函数原型为`int dlclose (void *handle);` `dlclose`用于关闭指定句柄的动态库，只有当此动态库的使用计数为`0`时，才会真正被系统卸载。
